@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Claudine clinic</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+display:flex;
+background:#c6d5b5;
+}
+
+/* SIDEBAR */
+.sidebar{
+width:220px;
+background:#3d5f1f;
+color:white;
+height:100vh;
+padding:15px;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+margin-bottom:20px;
+}
+
+/* CROSS CIRCLE */
+.circle{
+width:50px;
+height:50px;
+background:white;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:26px;
+color:#3d5f1f;
+}
+
+.menu button{
+width:100%;
+padding:10px;
+margin:8px 0;
+background:#6f9150;
+border:none;
+color:white;
+text-align:left;
+border-radius:5px;
+cursor:pointer;
+}
+
+/* MAIN */
+.main{
+flex:1;
+padding:15px;
+}
+
+/* TOPBAR */
+.topbar{
+background:#3d5f1f;
+color:white;
+padding:10px;
+display:flex;
+justify-content:space-between;
+}
+
+/* STATUS AREA */
+.status{
+display:flex;
+gap:60px;
+margin-top:20px;
+}
+
+.box{
+text-align:center;
+}
+
+.big{
+font-size:30px;
+}
+
+/* FORM */
+.form{
+margin-top:20px;
+}
+
+input,select{
+padding:8px;
+margin:8px;
+width:250px;
+border-radius:5px;
+border:1px solid #ccc;
+}
+
+.buttons{
+margin-top:15px;
+}
+
+.buttons button{
+padding:10px 20px;
+background:#3d5f1f;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+<div class="logo">
+<div class="circle">✚</div>
+<h3>Claudine clinic</h3>
+</div>
+
+<button>🏠 Dashboard</button>
+<button>👥 patients</button>
+<button>📅 Appointment</button>
+<button>⚙ settings</button>
+
+<br><br>
+
+<button onclick="sync()">🔄 sync(offline)</button>
+
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+<div class="topbar">
+<div>📡 Offline mode</div>
+<div id="date"></div>
+<div>👤 Receptionist</div>
+</div>
+
+<!-- STATUS -->
+<div class="status">
+
+<div class="box">
+<div class="big">11</div>
+Checked in
+</div>
+
+<div class="box">
+<div class="big">10</div>
+waiting
+</div>
+
+<div class="box">
+<div class="big">23</div>
+pending
+</div>
+
+</div>
+
+<!-- FORM -->
+<div class="form">
+
+<h3>Quick check in</h3>
+
+<input type="text" placeholder="Enter full name">
+
+<input type="text" placeholder="Enter number phone">
+
+<br>
+
+<input type="date">
+
+<select>
+<option>select</option>
+<option>Male</option>
+<option>Female</option>
+</select>
+
+<br>
+
+<select>
+<option>Select reason</option>
+<option>Consultation</option>
+<option>Checkup</option>
+</select>
+
+<br>
+
+<label><input type="checkbox"> Checked_in</label>
+<label><input type="checkbox"> Waiting</label>
+<label><input type="checkbox"> pending</label>
+
+<div class="buttons">
+<button>Check_in patient</button>
+<button>clear</button>
+</div>
+
+</div>
+
+</div>
+
+<script>
+document.getElementById("date").innerHTML =
+new Date().toLocaleDateString();
+
+function sync(){
+alert("Offline synced");
+}
+</script>
+
+</body>
+</html>

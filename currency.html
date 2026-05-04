@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Currency Details</title>
+
+<style>
+
+body{
+font-family: Arial;
+background:#f4f6f8;
+margin:0;
+}
+
+nav{
+background:#1976d2;
+color:rgba(218, 238, 250, 0.863);
+padding:15px;
+display:flex;
+justify-content:space-between;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+gap:20px;
+}
+
+nav a{
+color:black;
+text-decoration:none;
+}
+
+.container{
+padding:30px;
+}
+
+.card{
+background:white;
+padding:20px;
+margin-top:20px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:10px;
+}
+
+th,td{
+border:1px solid #ccc;
+padding:10px;
+text-align:center;
+}body{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: rgb(2, 43, 43);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color:#ce2e2e
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+<h2>CurrencyApp</h2>
+<a href="home.html">home page</a></button>&nbsp; 
+       <button> <a href="full.html">full converterpage</a></button>&nbsp; &nbsp;
+         <button> <a href="currency.html">carrency page</a></button>&nbsp; &nbsp;
+           <button> <a href="history.html">history page</a></button>&nbsp; &nbsp; 
+<button> <a href="seting.html">setting page</a></button>&nbsp;
+            
+</nav>
+<div class="container">
+
+<h1>Currency Details Page</h1>
+
+
+<select id="currencySelect" onchange="loadCurrency()">
+<option value="USD">USD</option>
+<option value="RWF">RWF</option>
+<option value="EUR">EUR</option>
+</select>
+
+
+<div class="card">
+<h2>Selected Currency Information</h2>
+<p id="info"></p>
+</div>
+<div class="card">
+<h2>Exchange Rate Trends</h2>
+
+<table id="trendTable">
+<thead>
+<tr>
+<th>Day</th>
+<th>Exchange Rate</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+
+</div>
+
+
+<div class="card">
+<h2>Comparison With Other Currencies</h2>
+<ul id="comparison"></ul>
+</div>
+<div class="card">
+<h2>Historical Rates</h2>
+<ul id="history"></ul>
+</div>
+
+</div>
+
+<script>
+
+const currencyData = {
+
+USD:{
+name:"US Dollar",
+country:"United States",
+rate:1,
+history:[1,1.01,1.02,1.03,1.04]
+},
+
+RWF:{
+name:"Rwandan Franc",
+country:"Rwanda",
+rate:1400,
+history:[1350,1360,1380,1390,1400]
+},
+
+EUR:{
+name:"Euro",
+country:"Europe",
+rate:0.9,
+history:[0.85,0.86,0.87,0.88,0.89]
+}
+
+};
+
+
+function loadCurrency(){
+
+let selected =
+document.getElementById("currencySelect").value;
+
+let data = currencyData[selected];
+document.getElementById("info").innerHTML =
+"Name: "+data.name+
+"<br>Country: "+data.country+
+"<br>Base Rate: "+data.rate;
+let table =
+document.querySelector("#trendTable tbody");
+
+table.innerHTML="";
+
+data.history.forEach((rate,index)=>{
+
+let row=document.createElement("tr");
+
+row.innerHTML =
+"<td>Day "+(index+1)+"</td>"+
+"<td>"+rate+"</td>";
+
+table.appendChild(row);
+
+});
+let list=document.getElementById("comparison");
+list.innerHTML="";
+
+for(let currency in currencyData){
+
+if(currency!==selected){
+
+let li=document.createElement("li");
+
+li.innerText =
+selected+" vs "+currency+
+" = "+
+(currencyData[selected].rate /
+currencyData[currency].rate).toFixed(2);
+
+list.appendChild(li);
+}
+}
+let history=document.getElementById("history");
+history.innerHTML="";
+
+data.history.forEach((rate,index)=>{
+
+let li=document.createElement("li");
+li.innerText="Day "+(index+1)+" : "+rate;
+
+history.appendChild(li);
+
+});
+
+}
+loadCurrency();
+
+</script>
+
+</body>
+</html>

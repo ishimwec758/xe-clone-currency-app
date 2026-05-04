@@ -1,0 +1,288 @@
+<!DOCTYPE html><html>
+<head>
+<title>Currency Converter</title><style>
+body{
+background:#f5f7fa;
+color:#333;
+line-height:1.6;
+}
+
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 30px;
+background:#1e3a8a;
+color:white;
+}
+
+nav h2{
+font-size:22px;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+gap:20px;
+}
+
+nav ul li a{
+text-decoration:none;
+color:white;
+font-weight:bold;
+padding:8px 12px;
+border-radius:5px;
+transition:0.3s;
+}
+
+nav ul li a:hover{
+background:#2563eb;
+}
+
+.active{
+background:#2563eb;
+}
+
+
+.hero{
+text-align:center;
+padding:80px 20px;
+}
+
+.hero h1{
+font-size:40px;
+margin-bottom:10px;
+}
+
+.hero p{
+font-size:18px;
+margin-bottom:30px;
+}
+
+
+.mini-converter{
+display:flex;
+justify-content:center;
+gap:10px;
+flex-wrap:wrap;
+}
+
+input, select{
+padding:10px;
+border:1px solid #ccc;
+border-radius:5px;
+font-size:16px;
+}
+
+
+button{
+padding:10px 20px;
+border:none;
+background:#2563eb;
+color:white;
+border-radius:5px;
+cursor:pointer;
+font-size:16px;
+transition:0.3s;
+}
+
+button:hover{
+background:#1e40af;
+}
+
+
+.converter-box{
+max-width:500px;
+margin:40px auto;
+padding:25px;
+background:white;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+
+#result{
+margin-top:20px;
+padding:15px;
+background:#eef2ff;
+border-radius:8px;
+text-align:center;
+font-weight:bold;
+}
+
+
+section{
+max-width:900px;
+margin:40px auto;
+padding:20px;
+background:white;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+.chart{
+height:200px;
+background:#e5e7eb;
+display:flex;
+align-items:center;
+justify-content:center;
+margin:20px 0;
+border-radius:10px;
+}
+
+
+#historyList{
+margin-top:20px;
+list-style:none;
+}
+
+#historyList li{
+padding:10px;
+border-bottom:1px solid #ddd;
+}
+
+
+label{
+display:block;
+margin:10px 0;
+font-size:18px;
+}
+
+
+.dark{
+background:#111827;
+color:white;
+}
+
+.dark nav{
+background:#000;
+}
+
+.dark section,
+.dark .converter-box{
+background:#1f2937;
+color:white;
+}
+
+.dark input,
+.dark select{
+background:#374151;
+color:white;
+border:none;
+}
+
+
+@media(max-width:768px){
+
+nav{
+flex-direction:column;
+gap:10px;
+}
+
+.hero h1{
+font-size:28px;
+}
+body{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: rgb(2, 43, 43);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color:#ce2e2e
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<h2>CurrencyApp</h2><br>
+<a href="home.html">home page</a></button>&nbsp; 
+       <button> <a href="full.html">full converterpage</a></button>&nbsp; &nbsp;
+         <button> <a href="currency.html">carrency page</a></button>&nbsp; &nbsp;
+           <button> <a href="history.html">history page</a></button>&nbsp; &nbsp; 
+<button> <a href="seting.html">setting page</a></button>&nbsp;
+</nav>
+<h1>Currency Converter</h1>
+
+<div class="converter-box">
+
+<input id="amount" type="number" placeholder="Enter Amount">
+<label>From:</label>
+<select id="from">
+<option value="USD">USD</option>
+<option value="RWF">RWF</option>
+<option value="EUR">EUR</option>
+</select>
+
+<button onclick="swap()">↔</button>
+<label>to:</label>
+<select id="to">
+<option value="RWF">RWF</option>
+<option value="USD">USD</option>
+<option value="EUR">EUR</option>
+</select>
+
+<button id="convertBtn">Convert</button>
+
+<div id="result">
+<p>Result will appear here</p>
+</div>
+
+</div>
+
+<!-- JAVASCRIPT -->
+<script>
+
+const rates = {
+USD: 1,
+RWF: 1400,
+EUR: 0.9
+};
+
+document.getElementById("convertBtn")
+.addEventListener("click", convertCurrency);
+
+function convertCurrency(){
+
+let amount = document.getElementById("amount").value;
+let from = document.getElementById("from").value;
+let to = document.getElementById("to").value;
+
+if(amount === ""){
+document.getElementById("result").innerHTML =
+"<p>Please enter amount</p>";
+return;
+}
+
+let usdAmount = amount / rates[from];
+let finalAmount = usdAmount * rates[to];
+
+document.getElementById("result").innerHTML =
+"<h3>" + amount + " " + from +
+" = " + finalAmount.toFixed(2) +
+" " + to + "</h3>";
+}
+
+function swap(){
+
+let from = document.getElementById("from");
+let to = document.getElementById("to");
+
+let temp = from.value;
+from.value = to.value;
+to.value = temp;
+
+}
+
+</script>
+
+</body>
+</html>
